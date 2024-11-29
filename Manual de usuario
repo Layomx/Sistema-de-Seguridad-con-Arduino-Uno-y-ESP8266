@@ -27,7 +27,7 @@ Instalacion del sistema:
 
 Operacion del sistema:
 Una vez se instale el sistema por completo, ya se puede alimentar el mismo, al alimentar el sistema deben verificarse que los LEDs indicadores de alimentacion esten encendidos, al conectar el sistema pocos segundos despues se deberia recibir un mensaje de CallMeBot acerca de el inicio del sistema. 
-Con el sistema encendido, el sensor PIR detectera y avisara de cualquier movimiento cada 60 segundos a traves de WhatsApp mientras que lo haran constantemente a traves de la pantalla LCD. El sensor magnetico registrara la apertura de puertas y notificara posibles intrusiones. Las alarmas se daran a traves de WhatsApp principalmente, pero tambien a traves de la pantalla LCD.
+Con el sistema encendido, el sensor PIR detectara y avisara de cualquier movimiento cada 60 segundos a traves de WhatsApp mientras que lo haran constantemente a traves de la pantalla LCD. El sensor magnetico registrara la apertura de puertas y notificara posibles intrusiones. Las alarmas se daran a traves de WhatsApp principalmente, pero tambien a traves de la pantalla LCD.
 
 Solucion de problemas frecuentes:
 1. El sensor PIR no detecta movimiento
