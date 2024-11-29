@@ -3,8 +3,8 @@
 #include <ESP8266HTTPClient.h>
 
 // Configuracion de red WiFi
-const char* netWifi = "LIB-8846994";       // Nombre de red WiFi
-const char* passwordWifi = "3t5YqpxshgSh"; // Contraseña de red WiFi
+const char* netWifi = "Tu nombre de red WiFi";       // Nombre de red WiFi
+const char* passwordWifi = "Tu contraseña de red WiFi"; // Contraseña de red WiFi
 
 // Prototipo de la funcion para conectar WeMos D1 a WiFi
 void connectToWiFi();
@@ -212,7 +212,7 @@ bool PIR()
       // Si se detecta movimiento y no se ha enviado mensaje en el último minuto
       if (currentMotionState && (currentTime - lastMessageSentTime >= 60000) && !messageSent) 
       {
-        // sendPirMessage("Movimiento detectado cerca de la puerta");      // Llamada para enviar el mensaje
+        sendPirMessage("Movimiento detectado cerca de la puerta");      // Llamada para enviar el mensaje
         messageSent = true;                                             // Ya se ha enviado el mensaje
         lastMessageSentTime = currentTime;                              // Actualizamos el tiempo de envío del mensaje
       }
@@ -285,7 +285,7 @@ void MAGNETIC()
   {
     // Este mensaje debe ser especifico porque el Arduino lo leera
     Serial.println("La puerta ha sido abierta");
-    // sendMagneticMessage("La puerta ha sido abierta"); // Mensaje de CallMeBot
+    sendMagneticMessage("La puerta ha sido abierta"); // Mensaje de CallMeBot
   }
 
   // Actualizando estado previo
