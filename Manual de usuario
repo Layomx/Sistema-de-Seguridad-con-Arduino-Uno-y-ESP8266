@@ -1,5 +1,5 @@
 Manual de Usuario para el Sistema de Seguridad basado en Arduino y ESP8266
-Autores: Elvis Adames y Kaori Gonzales
+Autores: Elvis Adames y Kaori Gonzalez
 Fecha: 21/11/2024
 
 Breve descripcion del sistema: Un sistema de seguridad automatizado, flexible y personalizado para fincas privadas diseñado para monitorear accesos en tiempo real, compuesto por sensores PIR y magnéticos, y una funcionalidad de alarmas silenciosas mediante notificaciones de WhatsApp.
