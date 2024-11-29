@@ -1,0 +1,84 @@
+Manual de Usuario para el Sistema de Seguridad basado en Arduino y ESP8266
+Autores: Elvis Adames y Kaori Gonzales
+Fecha: 21/11/2024
+
+Breve descripcion del sistema: Un sistema de seguridad automatizado, flexible y personalizado para fincas privadas diseñado para monitorear accesos en tiempo real, compuesto por sensores PIR y magnéticos, y una funcionalidad de alarmas silenciosas mediante notificaciones de WhatsApp.
+Objetivo: Ayudar a los usuarios a entender y operar el sistema 
+
+Componentes del sistema: 
+  - Sensor infrarojo pasivo
+  - Sensor magnetico
+  - Microcontrolador Arduino Uno R3
+  - Microcontrolador ESP8266 (WeMos D1 Mini)
+  - API CallMeBot (Red de comunicacion)
+
+Instalacion del sistema: 
+  - El usuario necesita tener instalado el IDE Arduino y los codigos fuentes del sistema descargados para poder realizar su instalacion y entonces seguir los siguientes pasos.
+  - El usuario debera seguir los esquemas de conexiones brindados para su instalcion.
+  - En el caso de que la instalacion requiera cables de longitudes grandes, se debera aumentar el voltaje suministrado de los componentes y se requerira el uso de resistencias, esto es debido a que en el recorrido se pueden perder datos como voltaje y se deben regular.
+  - El sensor PIR debe estar ubicado en una altura que no sobrepase la altura promedio de una persona adulta, esto con la intencion de poder detectar la presencia de la mayoria de intrusos, la malo ubicacion del sensor podria provocar varios problemas.
+  - El sensor PIR es sensible a cambios drasticos de temperatura, esto quiere decir que en caso de colocarse en una ubicacion "ruidosa" en que existan muchas interferencias electricas o fluctuacionestermicas el sensor PIR puede llegar a tener lecturas erraticas y generar falsas alarmas.
+  - El sensor magnetico debe colocarse de manera correcta, no tan separados pero tampoco tan juntos, la separacion debe ser de muy pocos centimetros.
+  - La pantalla LCD debe instalarse preferiblemente en una zona donde pueda divisarse rapidamente sus alarmas.
+  - Se debe insertar los datos como SSID y contraseña de la Red Wi-Fi en el codigo fuente del sistema para conectarse con la API CallMeBot.
+  - El usuario necesita enviar un mensaje a el numero: +34 644 95 42 75. Esto principalmente para recibir la API key necesaria para conectarse con el API en el codigo fuente del sistema.
+  - El usuario debe ingresar el numero telefonico en el que quiera recibir las alertas del sistema.
+  - El sistema puede ser alimentado a traves de dispositivos como ordenadores a traves de cables USB, sin embargo, la alimentacion por baterias tambien es aceptable no obstante se deben regular los voltajes, la placa Arduino Uno trabaja con 5V, mientras que la ESP8266 trabaja con maximo 3.3V con cualquier otro voltaje se inutilizara la placa.
+
+Operacion del sistema:
+Una vez se instale el sistema por completo, ya se puede alimentar el mismo, al alimentar el sistema deben verificarse que los LEDs indicadores de alimentacion esten encendidos, al conectar el sistema pocos segundos despues se deberia recibir un mensaje de CallMeBot acerca de el inicio del sistema. 
+Con el sistema encendido, el sensor PIR detectera y avisara de cualquier movimiento cada 60 segundos a traves de WhatsApp mientras que lo haran constantemente a traves de la pantalla LCD. El sensor magnetico registrara la apertura de puertas y notificara posibles intrusiones. Las alarmas se daran a traves de WhatsApp principalmente, pero tambien a traves de la pantalla LCD.
+
+Solucion de problemas frecuentes:
+1. El sensor PIR no detecta movimiento
+Causas y soluciones:
+  - Tiempo de calibracion insuficiente: Los sensores PIR necesitan cierta cantidad de tiempo para calibrarse y funcionar de manera eficiente, este proceso no deberia tardar mas de 1 minuto.
+  - Mala ubicacion: La ubicacion del sensor podria estar ocasionando dificultad en realizar lecturas, se recomienda analizar su ubicacion y reposicionar el sensor. 
+  - Falta de alimentacion adecuada: El sensor quizas no esta recibiendo un voltaje adecuado (3.3V a 5V), se recomienda verificar el voltaje de alimentacion a traves de los pines mediante un multimetro y tomar las medidas necesarias.
+
+  - Falso contacto: Verificar las conexiones, que ninguna este suelta o generando falso contacto, verificar que los pines utilizados sean los correctos o utilizados en el codigo fuente.
+2. El sensor PIR genera detecciones erraticas
+Causas y soluciones: 
+  - Ruido electrico: El sensor esta siendo afectado por interferencias electricas, se recomienda aumentar el filtro de lecturas en el codigo fuente a uno mayor del predeterminado.
+  - Cambios bruscos en la temperatura: Fuentes de calor repentinas generan falsas alarmas, como radiadores, luces incandescentes, en estos casos se recomienda reducir la sensibilidad del sensor o cambiar su posicion.
+  - Falsos positivos: Movimientos pequeños o cortos, producidos por animales o insectos, este caso se puede controlar a traves del aumento en el filtro de lectura, incrementando la cantidad de tiempo en la que se debe detectar movimiento para activar la alarma.
+
+3. El sensor PIR siempre esta activo
+Causas y soluciones:
+  - Tiempo de deteccion mal configurado: El potenciometro de activacion quizas este al maximo y la alerta o estado HIGH se mantiene durante muchos segundos, incluso minutos, se recomienda configurar este potenciometros hasta el minimo.
+  - Problemas en el circuito: Este estado HIGH permanente puede ser provocado por una mala conexion, se recomienda revisar el circuito y los diagramas de conexion para arreglar este error.
+
+4. El sensor PIR no genera señales
+Causas y soluciones
+  - Sensor dañado: El sensor esta defectuoso o ha recibido daños, verificar si tiene marcas de voltaje o probar el sensor en un circuito basico podria determinar si esta defectuoso o no.
+  - Configuracion incorrecta en el sistema: Verificar el codigo del sistema, que el PIN del sensor este configurado como INPUT y que se este utilizando fisicamente el especificado en el codigo fuente.
+  - Conexion incorrecta: Verificar el orden de conexion de los cables.
+
+5. No se detecta la posicion del Iman
+Causas y soluciones: 
+  - Iman y sensor desalineado: Se recomienda reubicar el iman de modo que este lo suficientemente juntos.
+  - Iman debil o dañado: Es dificil verificar el estado del iman pero en caso de que ninguna otra solucion funcione, seria recomendable cambiarlo o probar con otro.
+  - Conexion electrica suelta: Se recomienda verificar y ajustar las conexiones.
+  - Errores en la logica del codigo: No se recomienda cambiar la logica dentro del codigo sino se sabe lo que esta haciendo, esto podria generar errores como este.
+
+6. Sensor magnetico no cambia de estado
+Causas y soluciones:
+  - Sensor defectuoso: Cambiar el sensor es la unica solucion.
+  - Polaridad incorrecta del sensor: Revisar la polaridad del sensor, la orientacion debe ser la misma o similar.
+  - Errores en la logica del codigo: No se recomienda cambiar la logica dentro del codigo sino se sabe lo que esta haciendo, esto podria generar errores como este.
+
+7. Detecciones erraticas del sensor magnetico
+Causas y soluciones:
+  - Interferencias electromagneticas: La presencia de motores, cables u otras fuentes electromagneticas podrian ocasionar mal funcionamiento en el sensor. Se recomienda ubicarlo en otra posicion, en caso de tormenta electrica, apagar el sistema.
+  - Ruido en la conexion: El sensor magnetico necesita una resistencia PULL-UP sino generara lecturas erroneas y erraticas, no se debe cambiar el codigo fuente sino se sabe lo que esta haciendo.
+
+8. No se reciben mensajes
+  - Conexion erronea a Wi-Fi o API: Verificar el estado de la red inalambrica Wi-Fi como tambien la conexion en el codigo fuente con la API de CallMeBot.
+  - API en mantenimiento: Verificar el estado de la API en su pagina oficial.
+  - API sobrecargada: El sistema se recomienda que se utilice cuando sabemos que no deberia haber nadie rondando la zona, o cuando no hay nadie en el lugar que queremos monitorear, zonas con alto movimiento de personas o individuos entrando y saliendo constantemente por la puerta monitoreada sobrecargara de mensajes la API y mandara varios mensajes a la cola, la API no puede enviar muchos mensajes por minuto, se recomienda utilizar el sistema como una alarma de accion inmediata y no utilizarse en horas pico.
+  - Configuracion erronea en el codigo fuente: Verifique la logica dentro del codigo fuente, cabe la posibilidad de que haya un error en ella.
+
+En caso de que estas soluciones no arreglen del todo el problema, se recomienda verificar entonces el funcionamiento de los microcontroladores, quizas esten defectuosos.
+
+Mantenimiento: 
+Se recomienda limpiar los sensores con trapos secos regularmente y verificar sus conexiones, de igual forma, se recomienda verificar acerca de nuevas versiones del API de CallMeBot o su estado.
